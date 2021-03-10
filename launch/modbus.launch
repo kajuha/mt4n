@@ -1,0 +1,7 @@
+<launch>
+  <node pkg="modbus" type="modbus" name="modbus" output="screen">
+    <param name="serial_port" value="/dev/recipe.driver.modbus" />
+    <param name="baud_rate" value="115200" />
+    <param name="node_name" value="modbus_rf" />
+  </node>
+</launch>
