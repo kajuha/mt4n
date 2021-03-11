@@ -9,7 +9,7 @@ int main(void) {
   modbus_t *ctx;
   uint16_t input_register = 0;
 
-  ctx = modbus_new_rtu("/dev/ttyUSB9", 9600, 'N', 8, 1);
+  ctx = modbus_new_rtu("/dev/modbus", 9600, 'N', 8, 1);
 
   // modbus_new_rtu return
   // pointer : successful

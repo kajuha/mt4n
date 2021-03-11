@@ -2,7 +2,7 @@
 # CMake
 ################################################################################
 cmake_minimum_required(VERSION 2.8.3)
-project(modbus)
+project(mt4n)
 
 ################################################################################
 # Packages
@@ -26,7 +26,7 @@ find_package(catkin REQUIRED COMPONENTS
 # Catkin specific configuration
 ################################################################################
 catkin_package(  
-  LIBRARIES modbus
+  LIBRARIES mt4n
   CATKIN_DEPENDS roscpp std_msgs sensor_msgs tf
   DEPENDS system_lib
 )
@@ -36,21 +36,22 @@ catkin_package(
 ################################################################################
 include_directories(  
   ${catkin_INCLUDE_DIRS}
+  /usr/include/modbus
 )
 
-add_executable(modbus src/modbus.cpp)
-add_dependencies(modbus ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-target_link_libraries(modbus ${catkin_LIBRARIES})
+add_executable(mt4n src/mt4n.cpp)
+add_dependencies(mt4n ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(mt4n ${catkin_LIBRARIES} modbus)
 
 # I knew the REP0003(http://www.ros.org/reps/rep-0003.html#c),
-# but the code of "modbus" must compile with C++11.
+# but the code of "mt4n" must compile with C++11.
 set(CMAKE_CXX_FLAGS "-std=c++11 ${CMAKE_CXX_FLAGS}")
 
 
 ################################################################################
 # Install
 ################################################################################
-install(TARGETS modbus
+install(TARGETS mt4n
         ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
         LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
         RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}

@@ -1,0 +1,5 @@
+<launch>
+  <include file="$(find mt4n)/launch/mt4n.launch" />
+
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find mt4n)/rviz/view.rviz" />
+</launch>

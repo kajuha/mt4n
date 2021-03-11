@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package>
-  <name>modbus</name>
+  <name>mt4n</name>
   <version>0.0.1</version>
-  <description>modbus</description>
+  <description>mt4n</description>
   <license>BSD</license>
   <author email="kajuha@gmail.com">Jeong-Hwan Kwak</author>
   <maintainer email="kajuha@gmail.com">Jeong-Hwan Kwak</maintainer>
