@@ -1,5 +1,7 @@
 <launch>
-  <node pkg="mt4n" type="mt4n" name="mt4n" output="screen">
+  <arg name="output_type" default="screen" doc="output type"/>
+  
+  <node pkg="mt4n" type="mt4n" name="mt4n" output="$(arg output_type)">
     <param name="serial_port" value="/dev/modbus" />
     <param name="baud_rate" value="9600" />
     <param name="slave_num" value="11" />
