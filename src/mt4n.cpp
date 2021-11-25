@@ -40,8 +40,8 @@ int main(int argc, char* argv[])
 
 	sensor_msgs::BatteryState batteryState;
 
-	// ctx = modbus_new_rtu(serial_port.c_str(), baud_rate, 'N', 8, 1);
-	ctx = modbus_new_rtu("/dev/modbus", 9600, 'N', 8, 1);
+	ctx = modbus_new_rtu(serial_port.c_str(), baud_rate, 'N', 8, 1);
+	// ctx = modbus_new_rtu("/dev/modbus", 9600, 'N', 8, 1);
 
 	printf("%s %d %d\n", serial_port.c_str(), baud_rate, slave_num);
 
