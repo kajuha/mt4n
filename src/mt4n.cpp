@@ -9,6 +9,7 @@
 #include <fcntl.h>
 #include <termios.h>
 #include <sys/time.h>
+#include <stdlib.h>
 
 #include <iostream>
 #include <queue>
@@ -40,10 +41,19 @@ int main(int argc, char* argv[])
 
 	sensor_msgs::BatteryState batteryState;
 
-	ctx = modbus_new_rtu(serial_port.c_str(), baud_rate, 'N', 8, 1);
-	// ctx = modbus_new_rtu("/dev/modbus", 9600, 'N', 8, 1);
+    char real_name[NAME_MAX] = {'\0', };
 
-	printf("%s %d %d\n", serial_port.c_str(), baud_rate, slave_num);
+    // readlink(serial_port.c_str(), real_name, sizeof(real_name));
+	realpath(serial_port.c_str(), real_name);
+
+	if (!strcmp(serial_port.c_str(), real_name)) {
+		printf("failed to get realpath\n");
+
+		return -1;
+	}
+	ctx = modbus_new_rtu(real_name, baud_rate, 'N', 8, 1);
+
+	printf("%s->%s %d %d\n", serial_port.c_str(), real_name, baud_rate, slave_num);
 
 	// modbus_new_rtu return
 	// pointer : successful
