@@ -34,14 +34,17 @@ catkin_package(
 ################################################################################
 # Build
 ################################################################################
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(LIBMODBUS libmodbus REQUIRED)
+
 include_directories(  
   ${catkin_INCLUDE_DIRS}
-  /usr/include/modbus
+  ${LIBMODBUS_INCLUDE_DIRS}
 )
 
 add_executable(mt4n src/mt4n.cpp)
 add_dependencies(mt4n ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-target_link_libraries(mt4n ${catkin_LIBRARIES} modbus)
+target_link_libraries(mt4n ${catkin_LIBRARIES} ${LIBMODBUS_LIBRARIES})
 
 # I knew the REP0003(http://www.ros.org/reps/rep-0003.html#c),
 # but the code of "mt4n" must compile with C++11.
